@@ -3,3 +3,12 @@ composer.json
 composer.lock
 vendor/
 frontend/node_modules
+frontend/dist
+frontend/angular.json
+frontend/package.json
+frontend/tsconfig.json
+frontend/tsconfig.app.json
+frontend/tsconfig.spec.json
+frontend/tsconfig.base.json
+frontend/tsconfig.compiler.json
+frontend/tsconfig.compiler.json
