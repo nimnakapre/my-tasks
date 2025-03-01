@@ -1,15 +1,25 @@
 <?php
+
+require_once '../../config.php';
+
 class Database {
     private static $instance = null;
     private $conn;
     
-    private $host = "localhost";
-    private $username = "root";  // Update with your MySQL username
-    private $password = "1234";      // Update with your MySQL password
-    private $database = "my_tasks"; // Update with your database name
+    private $host;
+    private $username; 
+    private $password;      
+    private $database; 
 
     private function __construct() {
         try {
+            $config = getDatabaseConfig();
+
+            $this->host = $config['host'];
+            $this->username = $config['username'];
+            $this->password = $config['password'];
+            $this->database = $config['dbname'];
+
             $this->conn = new PDO(
                 "mysql:host=" . $this->host . ";dbname=" . $this->database,
                 $this->username,
@@ -22,18 +32,19 @@ class Database {
     }
 
     public static function getInstance() {
-        if (!self::$instance) {
+        if (self::$instance == null) {
             self::$instance = new Database();
         }
         return self::$instance;
     }
 
+
     public function getConnection() {
         return $this->conn;
     }
 
-    public function __wakeup() {  // Make this public
-        // Implementation if needed
+    public function __wakeup() { 
+        
     }
 }
 ?> 
